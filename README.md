@@ -24,8 +24,6 @@ In this mini-project, I:
 >    2) Deployed the backend on a server.
 >    3) Connected the backend to the frontend provided by Crio.
 
-<br>
-
 ### XharkTank High-Level Architecture
 
 ![xharktank_architecture](https://user-images.githubusercontent.com/80940234/162623199-431368ac-76b8-45fb-acab-889e47dd38df.png)
