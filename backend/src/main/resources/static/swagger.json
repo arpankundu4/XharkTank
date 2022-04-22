@@ -1,0 +1,333 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "XharkTank (Crio Launch 2022) APIs Documentation",
+    "version": "1.0.0",
+    "title": "XharkTank API",
+    "contact": {
+      "name": "the Developer (Arpan Kundu)",
+      "email": "arpan.kundu.4@gmail.com"
+    },
+    "license": {
+      "name": "MIT License",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "xharktank-app.herokuapp.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "tags": [
+    {
+      "name": "xharktank",
+      "description": "Xharktank APIs"
+    }
+  ],
+  "paths": {
+    "/pitches": {
+      "get": {
+        "tags": [
+          "xharktank"
+        ],
+        "summary": "Fetches all pitches",
+        "description": "Fetches all the pitches in reverse chronological order",
+        "operationId": "getPitchesUsingGET",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Pitches fetched successfully",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Pitch"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "xharktank"
+        ],
+        "summary": "Creates a new pitch",
+        "description": "Creates a new pitch",
+        "operationId": "postPitchUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "pitch",
+            "description": "Pitch request body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PitchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Pitch created successfully\n(Returns id of newly created pitch)",
+            "schema": {
+              "$ref": "#/definitions/PostResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid request body"
+          }
+        }
+      }
+    },
+    "/pitches/{pitch_id}": {
+      "get": {
+        "tags": [
+          "xharktank"
+        ],
+        "summary": "Fetches a pitch by id",
+        "operationId": "getPitchUsingGET",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pitch_id",
+            "in": "path",
+            "description": "Id of pitch to be fetched",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pitch fetched successfully",
+            "schema": {
+              "$ref": "#/definitions/Pitch"
+            }
+          },
+          "404": {
+            "description": "Pitch not found"
+          }
+        }
+      }
+    },
+    "/pitches/{pitch_id}/makeOffer": {
+      "post": {
+        "tags": [
+          "xharktank"
+        ],
+        "summary": "Creates a counter offer for a pitch",
+        "operationId": "postOfferUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "offer",
+            "description": "Offer request body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OfferRequest"
+            }
+          },
+          {
+            "name": "pitch_id",
+            "in": "path",
+            "description": "Id of pitch for which offer is being made",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Offer created successfully\n(Returns id of newly created offer)",
+            "schema": {
+              "$ref": "#/definitions/PostResponse"
+            }
+          },
+          "404": {
+            "description": "Pitch not found"
+          },
+          "400": {
+            "description": "Invalid request body"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Offer": {
+      "type": "object",
+      "required": [
+        "id",
+        "pitchId",
+        "investor",
+        "comment",
+        "amount",
+        "equity"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "pitchId": {
+          "type": "string"
+        },
+        "investor": {
+          "type": "string"
+        },
+        "equity": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "maximum": 100,
+          "exclusiveMaximum": false
+        },
+        "comment": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0,
+          "exclusiveMinimum": true
+        }
+      },
+      "title": "Offer"
+    },
+    "OfferRequest": {
+      "type": "object",
+      "required": [
+        "investor",
+        "comment",
+        "amount",
+        "equity"
+      ],
+      "properties": {
+        "investor": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0,
+          "exclusiveMinimum": true
+        },
+        "equity": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "maximum": 100,
+          "exclusiveMaximum": false
+        },
+        "comment": {
+          "type": "string"
+        }
+      },
+      "title": "OfferRequest"
+    },
+    "Pitch": {
+      "type": "object",
+      "required": [
+        "id",
+        "entrepreneur",
+        "pitchTitle",
+        "pitchIdea",
+        "askAmount",
+        "equity"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "entrepreneur": {
+          "type": "string"
+        },
+        "pitchTitle": {
+          "type": "string"
+        },
+        "pitchIdea": {
+          "type": "string"
+        },
+        "askAmount": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0,
+          "exclusiveMinimum": true
+        },
+        "equity": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "maximum": 100,
+          "exclusiveMaximum": false
+        },
+        "offers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Offer"
+          }
+        }
+      },
+      "title": "Pitch"
+    },
+    "PitchRequest": {
+      "type": "object",
+      "required": [
+        "entrepreneur",
+        "pitchTitle",
+        "pitchIdea",
+        "askAmount",
+        "equity"
+      ],
+      "properties": {
+        "entrepreneur": {
+          "type": "string"
+        },
+        "pitchTitle": {
+          "type": "string"
+        },
+        "pitchIdea": {
+          "type": "string"
+        },
+        "askAmount": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0,
+          "exclusiveMinimum": true
+        },
+        "equity": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "maximum": 100,
+          "exclusiveMaximum": false
+        }
+      },
+      "title": "PitchRequest"
+    },
+    "PostResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "title": "PostResponse"
+    }
+  }
+}
