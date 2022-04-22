@@ -8,7 +8,7 @@
 <h2 align ="center">Congratulations, We have a Deal!</h2>
 
 <p align="center">
-   <a href="https://github.com/arpankundu4/XharkTank/blob/main/LICENSE">
+   <a href="https://github.com/arpankundu4/XharkTank/blob/master/LICENSE">
       <img src="https://img.shields.io/badge/License-MIT-green.svg" />
    </a>
 </p>
@@ -16,7 +16,7 @@
 
 XharkTank is an application where entrepreneurs can pitch ideas for a business or product they wish to develop, and investors can make counter offers to the same. It helps connect budding entrepreneurs with investors.
 
-XharkTank is a part of <b>Crio Launch 2022</b>.
+XharkTank was a part of <b>Crio Launch 2022</b> (stage-1).
 
 In this mini-project, I:
 
@@ -24,6 +24,7 @@ In this mini-project, I:
 >    2) Deployed the backend on a server.
 >    3) Connected the backend to the frontend provided by Crio.
 
+<br>
 
 ### XharkTank High-Level Architecture
 
