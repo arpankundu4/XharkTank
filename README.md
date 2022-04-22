@@ -65,7 +65,7 @@ The web app is now live at:
 ### Technology Stack Used
 
 - Java 11
-- Springboot 2.6.2
+- SpringBoot 2.6.2
 - MongoDB 4.2
 - Maven
 - Swagger
@@ -75,14 +75,14 @@ The web app is now live at:
 ### Clone The Repository
 
 ```terminal
-$ git clone https://gitlab.crio.do/COHORT_ME_BUILDOUT_XHARKTANK_ENROLL_1648956266180/arpan-kundu-4-ME_BUILDOUT_XHARKTANK.git
+$ git clone git@github.com:arpankundu4/XharkTank.git
 ```
 
 ### Setup
 
 From terminal:
 
-1. Type `cd arpan-kundu-4-ME_BUILDOUT_XHARKTANK`
+1. Type `cd XharkTank`
 2. Type `chmod +x setup.sh`
 3. Type `./setup.sh`
 
@@ -90,7 +90,7 @@ From terminal:
 
 From terminal:
 
-1. Type `cd arpan-kundu-4-ME_BUILDOUT_XHARKTANK`
+1. Type `cd XharkTank`
 2. Type `chmod +x server_run.sh`
 3. Type `./server_run.sh`
 4. Server will start on `localhost:8081`
